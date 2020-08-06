@@ -1,48 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import GroceryList from "./components/TodoList";
+import TodoList from "./components/TodoList";
 import ListForm from "./components/TodoForm";
+import "./components/Todo.css";
 
-const groceries = [
-  {
-    name: "Bananas",
-    id: 123,
-    purchased: false
-  },
-  {
-    name: "Torillas",
-    id: 124,
-    purchased: false
-  },
-  {
-    name: "Milk",
-    id: 1235,
-    purchased: false
-  },
-  {
-    name: "Pizza Sauce",
-    id: 1246,
-    purchased: false
-  },
-  {
-    name: "Raw Honey",
-    id: 1237,
-    purchased: false
-  },
-  {
-    name: "Granola",
-    id: 1248,
-    purchased: false
-  }
-];
+
+const tasks = [];
 
 class App extends React.Component {
   // Constructor with state
   constructor() {
     super();
     this.state = {
-      groceries // same as === groceries: groceries
+      tasks // same as === tasks: tasks
     };
   }
 
@@ -55,7 +26,7 @@ class App extends React.Component {
     // Return all other items untouched
     this.setState({
       // Build a new state object each time!
-      groceries: this.state.groceries.map(item => {
+      tasks: this.state.tasks.map(item => {
         if (itemId === item.id) {
           return {
             // return the item with purchased field toggled
@@ -76,14 +47,14 @@ class App extends React.Component {
       purchased: false
     };
     this.setState({
-      groceries: [...this.state.groceries, newItem]
+      tasks: [...this.state.tasks, newItem]
     });
   };
 
   clearPurchased = e => {
     e.preventDefault();
     this.setState({
-      groceries: this.state.groceries.filter(item => !item.purchased)
+      tasks: this.state.tasks.filter(item => !item.purchased)
     });
   };
 
@@ -91,11 +62,11 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className="header">
-          <h1>Shopping List</h1>
+          <h1>Tasks</h1>
           <ListForm addItem={this.addItem} />
         </div>
-        <GroceryList
-          groceries={this.state.groceries}
+        <TodoList
+          tasks={this.state.tasks}
           toggleItem={this.toggleItem}
           clearPurchased={this.clearPurchased}
         />
