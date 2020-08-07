@@ -1,7 +1,6 @@
 import React from "react";
 
 class ListForm extends React.Component {
-  // Constructor with state
   constructor() {
     super();
     this.state = {
@@ -10,11 +9,9 @@ class ListForm extends React.Component {
   }
 
   handleChanges = e => {
-    // update state with each keystroke
     this.setState({ item: e.target.value });
   };
 
-  // class property to submit form
   submitItem = e => {
     e.preventDefault();
     this.props.addItem(this.state.item);
